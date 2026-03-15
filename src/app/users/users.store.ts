@@ -40,6 +40,12 @@ export const UsersStore = signalStore(
             resetFilters() {
                 patchState(store, { query: '', selectedRole: null });
             },
+            setEditingUser(id: number) {
+                patchState(store, { editingUserId: id });
+            },
+            cancelEdit() {
+                patchState(store, { editingUserId: null });
+            },
             loadUsers() {
                 patchState(store, { loading: true, error: null });
                 usersService.getUsers$().subscribe({
@@ -48,6 +54,19 @@ export const UsersStore = signalStore(
                         patchState(store, {
                             error: err?.message ?? 'Failed to load users',
                             loading: false,
+                        }),
+                });
+            },
+            updateUser(id: number, changes: Partial<Pick<User, 'name' | 'role'>>) {
+                usersService.updateUser$(id, changes).subscribe({
+                    next: (updated: User) =>
+                        patchState(store, {
+                            users: store.users().map((u) => (u.id === id ? updated : u)),
+                            editingUserId: null,
+                        }),
+                    error: (err: Error) =>
+                        patchState(store, {
+                            error: err?.message ?? 'Failed to update user',
                         }),
                 });
             },

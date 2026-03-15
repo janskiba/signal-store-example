@@ -3,10 +3,14 @@
         <span class="font-medium text-gray-800">{{ user().name }}</span>
         <span class="ml-2 text-sm text-gray-400">#{{ user().id }}</span>
     </div>
-    <span class="text-xs font-semibold uppercase tracking-wide px-2.5 py-1 rounded-full"
-        [class.bg-purple-100]="user().role === 'admin'" [class.text-purple-700]="user().role === 'admin'"
-        [class.bg-blue-100]="user().role === 'editor'" [class.text-blue-700]="user().role === 'editor'"
-        [class.bg-gray-100]="user().role === 'viewer'" [class.text-gray-600]="user().role === 'viewer'">
-        {{ user().role }}
-    </span>
+    <div class="flex items-center gap-3">
+        <span class="text-xs font-semibold uppercase tracking-wide px-2.5 py-1 rounded-full"
+            [class]="roleBadgeClass(user().role)">
+            {{ user().role }}
+        </span>
+        <button class="text-xs text-gray-400 hover:text-blue-600 transition-colors"
+            (click)="store.setEditingUser(user().id)">
+            Edit
+        </button>
+    </div>
 </li>

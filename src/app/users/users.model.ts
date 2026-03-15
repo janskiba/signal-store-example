@@ -12,6 +12,7 @@ export interface UsersState {
     selectedRole: UserRole | null;
     loading: boolean;
     error: string | null;
+    editingUserId: number | null;
 }
 
 export const initialState: UsersState = {
@@ -20,6 +21,7 @@ export const initialState: UsersState = {
     selectedRole: null,
     loading: false,
     error: null,
+    editingUserId: null,
 };
 
 export const MOCK_USERS: User[] = [

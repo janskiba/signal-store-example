@@ -9,7 +9,11 @@
 
 <ul class="space-y-2">
     @for (user of store.filteredUsers(); track user.id) {
+    @if (store.editingUserId() === user.id) {
+    <app-user-edit-form [user]="user" />
+    } @else {
     <app-user-item [user]="user" />
+    }
     } @empty {
     <li class="text-center text-gray-400 py-12">No users match your filters.</li>
     }
