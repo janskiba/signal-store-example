@@ -1,11 +1,12 @@
 import { Component, inject, input, OnInit, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { form, FormField, required, schema, submit } from '@angular/forms/signals';
 import { User, UserRole } from '../users.model';
 import { UsersStore } from '../users.store';
 
 @Component({
     selector: 'app-user-edit-form',
-    imports: [FormField],
+    imports: [FormsModule, FormField],
     templateUrl: './user-edit-form.component.html',
 })
 export class UserEditFormComponent implements OnInit {
