@@ -1,0 +1,17 @@
+@if (store.loading()) {
+<p class="text-center text-gray-400 py-12">Loading users…</p>
+} @else if (store.error()) {
+<p class="text-center text-red-500 py-12">{{ store.error() }}</p>
+} @else {
+<p class="text-sm text-gray-500 mb-3">
+    Showing {{ store.filteredCount() }} of {{ store.users().length }} users
+</p>
+
+<ul class="space-y-2">
+    @for (user of store.filteredUsers(); track user.id) {
+    <app-user-item [user]="user" />
+    } @empty {
+    <li class="text-center text-gray-400 py-12">No users match your filters.</li>
+    }
+</ul>
+}
