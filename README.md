@@ -1,6 +1,6 @@
 # NgRx Signal Store Example
 
-Sample project for my article *(link coming soon)*.
+Sample project for my article https://janskiba.dev/articles/ng-rx-signal-store-explained-with-real-examples.
 
 Demonstrates an Angular 21 app using **NgRx Signal Store** with:
 
